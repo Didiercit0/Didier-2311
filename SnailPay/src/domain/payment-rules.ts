@@ -1,0 +1,13 @@
+export const APPROVED_CARD = '1234123412341234';
+export const DECLINED_CARD = '4000000000000002';
+export const INSUFFICIENT_FUNDS_CARD = '4000000000009995';
+export const MAX_AMOUNT = 100_000;
+export const VALID_EXPIRATION = '12/26';
+export const EXPIRED_EXPIRATION = '01/20';
+export const VALID_CVV = '543';
+
+export const SUPPORTED_CARDS: readonly string[] = [
+  APPROVED_CARD,
+  DECLINED_CARD,
+  INSUFFICIENT_FUNDS_CARD,
+];
