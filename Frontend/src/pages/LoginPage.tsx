@@ -6,7 +6,7 @@ import type { LoginInput } from '../domain/user'
 export function LoginPage({ successMessage }: { successMessage?: string }) {
   const onLogin = async (input: LoginInput) => {
     await loginLocal(input)
-
+    window.location.hash = '/dashboard'
   }
   return (
     <AuthLayout>
