@@ -34,7 +34,7 @@ async function hashPassword(password: string, salt: string): Promise<string> {
 export function getCurrentUser(): User | null {
   const account = readAccount()
   try {
-    return account && (localStorage.getItem(SESSION_KEY) === account.id || sessionStorage.getItem(SESSION_KEY) === account.id) ? publicUser(account) : null
+    return account && localStorage.getItem(SESSION_KEY) === account.id ? publicUser(account) : null
   } catch { return null }
 }
 export function getSavedEmail(): string { return readAccount()?.email ?? '' }
@@ -61,17 +61,14 @@ export async function loginLocal(input: LoginInput): Promise<User> {
     throw new Error('Correo electrónico o contraseña incorrectos. Revisa tus datos e intenta de nuevo.')
   }
   try {
-    localStorage.removeItem(SESSION_KEY)
-    sessionStorage.removeItem(SESSION_KEY)
-    const sessionStore = input.remember ? localStorage : sessionStorage
-    sessionStore.setItem(SESSION_KEY, account.id)
+    localStorage.setItem(SESSION_KEY, account.id)
   } catch { throw new Error('No pudimos guardar tu sesión. Revisa los permisos de almacenamiento del navegador.') }
   notifySession()
   return publicUser(account)
 }
 
 export function logoutLocal(): void {
-  try { localStorage.removeItem(SESSION_KEY); sessionStorage.removeItem(SESSION_KEY) }
+  try { localStorage.removeItem(SESSION_KEY) }
   catch { throw new Error('No se pudo cerrar la sesión. Revisa el almacenamiento del navegador.') }
   notifySession()
 }
@@ -103,4 +100,15 @@ export function savePayment(payment: Payment): number {
   }
   notifySession()
   return balance
+}
+
+export function getPaymentHistory(): Payment[] {
+  if (!getCurrentUser()) return []
+  const payments = readAccount()?.payments
+  if (!Array.isArray(payments)) return []
+  return payments.filter(payment => payment && typeof payment === 'object'
+    && typeof payment.id === 'string' && typeof payment.reference === 'string'
+    && typeof payment.transaction_amount === 'number' && Number.isFinite(payment.transaction_amount)
+    && typeof payment.date_created === 'string' && Number.isFinite(Date.parse(payment.date_created))
+    && ['approved', 'rejected', 'error'].includes(payment.status))
 }

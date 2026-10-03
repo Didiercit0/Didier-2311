@@ -1,142 +1,228 @@
-.dashboard-page { min-height: 100svh; background: #fbf8f1; }
-.dashboard-width { width: min(1240px, calc(100% - 64px)); margin-inline: auto; }
-.dashboard-header { background: #fdfbf5; border-bottom: 1px solid #e8e5da; }
-.dashboard-header-inner { display: flex; align-items: center; gap: 44px; min-height: 94px; }
-.dashboard-header .club-logo { margin: 0; width: 225px; }
-.tribune-tab { margin-left: auto; border-radius: 8px; color: white; background: var(--forest); padding: 10px 22px; font-size: 14px; font-weight: 600; }
-.club-badge { display: inline-flex; align-items: center; width: fit-content; padding: 5px 10px; border-radius: 20px; background: #eeeee3; color: #5b634b; font-size: 10px; font-weight: 600; letter-spacing: .4px; white-space: nowrap; }
-.member-strip { display: flex; align-items: center; justify-content: space-between; gap: 22px; min-height: 91px; }
-.member-strip > p { display: flex; align-items: center; gap: 12px; margin: 0; font-size: 12px; color: #616858; }
-.member-strip > p > strong { font-family: Georgia, serif; font-size: 20px; font-weight: 500; color: #252820; }
-.member-separator { color: #9b9e8f; }
-.member-session { display: flex; align-items: center; gap: 12px; }
-.member-avatar { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: #e1e5d6; color: var(--forest); font-family: Georgia, serif; font-size: 16px; }
-.member-identity { display: flex; flex-direction: column; gap: 3px; max-width: 220px; }
-.member-identity strong { font-size: 13px; overflow-wrap: anywhere; }
-.member-identity > span { font-size: 10px; color: #6f7566; overflow-wrap: anywhere; }
-.logout-button { display: flex; align-items: center; gap: 9px; margin-left: 10px; border: 1px solid #e9e5da; border-radius: 6px; padding: 8px 12px; color: #47543d; background: #fffdf8; font-size: 11px; white-space: nowrap; }
-.logout-button:hover { background: #edf1e8; }
-.logout-button svg { width: 16px; height: 16px; }
-.dashboard-content { display: flex; flex-direction: column; gap: 24px; padding: 0 0 52px; }
-.race-day-strip { display: flex; align-items: center; justify-content: space-between; gap: 24px; background: #eeece3; border-radius: 14px; padding: 23px 25px; }
+.dashboard-page { --forest: #4e6f52; --orange: #a54617; color: #20221c; min-height: 100svh; background: #fcf9f1; font-size: 13px; }
+.dashboard-width { width: calc(100% - 46px); max-width: 1500px; margin-inline: auto; }
+.dashboard-header { height: 78px; background: #fcf9f0; box-shadow: 0 2px 7px #302f2010; }
+.dashboard-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; height: 100%; }
+.dashboard-brand { display: flex; align-items: center; gap: 14px; color: #171911; text-decoration: none; flex-shrink: 0; }
+.dashboard-brand img { display: block; width: 240px; max-width: 100%; height: auto; }
+.dashboard-brand > span { display: flex; flex-direction: column; gap: 3px; }
+.dashboard-brand strong { font: 600 21px/1.1 Georgia, 'Times New Roman', serif; letter-spacing: -.65px; }
+.dashboard-brand small { font-size: 10px; letter-spacing: .8px; }
+.dashboard-nav { display: flex; align-items: center; gap: 6px; }
+.dashboard-nav button { background: transparent; border: 0; border-radius: 7px; min-height: 32px; padding: 6px 12px; color: #1e211a; font-size: 13px; white-space: nowrap; }
+.dashboard-nav button:hover { background: #eeeee3; }
+.dashboard-nav .nav-active { color: #fff; background: var(--forest); box-shadow: 0 2px 3px #24332916; padding-inline: 13px; }
+.club-purse { display: flex; align-items: center; gap: 16px; white-space: nowrap; }
+.club-purse > div { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.club-purse > div > span { font-size: 10px; letter-spacing: .6px; }
+.club-purse strong { color: #35543a; font-size: 14px; }
+.purse-avatar { display: grid; place-items: center; width: 31px; height: 31px; background: #36563d; color: #fff; border-radius: 50%; }
+.purse-avatar svg { width: 17px; height: 17px; }
+.member-strip { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 62px; }
+.member-strip > p { display: flex; align-items: center; gap: 9px; margin: 0; color: #5b6055; font-size: 13px; }
+.member-strip > p strong { font: 600 20px Georgia, serif; letter-spacing: -.3px; color: #191b15; }
+.member-strip .legend-dot { width: 8px; height: 8px; }
+.member-separator { color: #7c8074; }
+.member-session { display: flex; align-items: center; gap: 9px; }
+.member-avatar { width: 35px; height: 35px; display: grid; place-items: center; border-radius: 50%; background: #dbddd1; color: #4c634e; font: 16px Georgia, serif; flex-shrink: 0; }
+.member-identity { display: flex; flex-direction: column; gap: 3px; }
+.member-identity strong { font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.member-identity > span { font-size: 10px; letter-spacing: .6px; }
+.logout-button { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 30px; border: 1px solid #e4e5da; background: #fffdf7; border-radius: 5px; padding: 5px 10px; margin-left: 6px; color: #354c35; font-size: 12px; letter-spacing: .2px; white-space: nowrap; }
+.logout-button svg { width: 15px; height: 15px; }
+.logout-button:hover { background: #eaece0; }
+.dashboard-content { display: flex; flex-direction: column; gap: 22px; padding: 12px 0 0; }
+.race-day-strip { min-height: 90px; display: flex; align-items: center; justify-content: space-between; gap: 24px; background: #eeece3; padding: 16px; border-radius: 13px; scroll-margin-top: 20px; }
 .race-day-title { display: flex; align-items: center; gap: 17px; }
-.race-day-icon { display: grid; place-items: center; width: 42px; height: 42px; flex-shrink: 0; border: 1px solid #dedfd1; color: var(--forest); border-radius: 9px; background: #f5f4ed; }
-.race-day-title > div > div { display: flex; align-items: center; gap: 11px; flex-wrap: wrap; }
-.race-day-title .club-badge { background: var(--forest); color: white; font-size: 9px; }
-.race-day-title h1 { font-size: 23px; letter-spacing: -.4px; margin: 0; }
-.race-day-title p { margin: 7px 0 0; font-size: 11px; color: #6d7263; }
-.race-day-metrics { display: flex; gap: 28px; padding: 15px 23px; background: #fbf9f1; border-radius: 9px; margin: 0; flex-shrink: 0; }
-.race-day-metrics > div + div { padding-left: 28px; border-left: 1px solid #e5e3d7; }
-.race-day-metrics dt { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; }
-.race-day-metrics dd { font-family: Georgia, serif; font-size: 21px; margin: 4px 0 0; }
-.dashboard-card { border: 1px solid #eeebe2; border-radius: 14px; background: #fffefc; box-shadow: 0 3px 4px #363e2710, 0 7px 24px #363e2703; }
-.balance-card { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; padding: 32px 30px; }
-.balance-card .eyebrow { display: flex; align-items: center; gap: 10px; color: #4d5644; font-size: 10px; letter-spacing: 1px; margin-bottom: 12px; }
-.balance-card .eyebrow svg { width: 14px; height: 14px; color: #789171; }
-.balance-amount { display: flex; align-items: baseline; gap: 14px; font-family: Georgia, serif; font-size: 50px; font-weight: 600; color: #35573b; letter-spacing: -1.4px; margin: 0 0 7px; overflow-wrap: anywhere; }
-.balance-amount span { font-family: 'Segoe UI', sans-serif; font-weight: 600; font-size: 10px; letter-spacing: .6px; padding: 5px 10px; border-radius: 6px; background: #f1eee5; color: #59604e; }
-.card-description { color: #6c7165; font-size: 12px; line-height: 1.65; margin: 0; }
-.balance-actions { display: flex; flex-direction: column; gap: 15px; }
-.balance-actions .primary-button { min-height: 49px; font-size: 13px; }
-.balance-actions .primary-button svg:first-child { margin-right: auto; }
-.balance-actions .primary-button svg:last-child { margin-left: auto; }
-.balance-actions > p { display: flex; align-items: center; justify-content: center; gap: 8px; color: #78816e; font-size: 11px; margin: 0; }
-.balance-actions > p svg { width: 16px; flex-shrink: 0; }
-.dashboard-stats { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: 24px; }
-.bets-card, .races-card { padding: 29px 28px 25px; }
-.card-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 15px; }
-.card-heading .eyebrow { color: #616b56; font-size: 9px; letter-spacing: 1.2px; margin-bottom: 9px; }
-.card-heading h2 { font-size: 25px; letter-spacing: -.5px; line-height: 1.25; margin: 0 0 10px; }
-.card-heading > .club-badge { margin-top: 5px; }
-.bets-chart { margin-top: 24px; }
-.bets-chart svg { display: block; width: 215px; max-width: 100%; margin: 0 auto 23px; }
-.donut-total { font-family: Georgia, serif; font-size: 35px; fill: #252820; }
-.donut-caption { font-size: 10px; letter-spacing: .7px; fill: #636c56; }
-.bets-legend { margin: 0; padding: 15px; background: #f6f3eb; border-radius: 9px; display: flex; flex-direction: column; gap: 12px; }
-.bets-legend > div { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; }
-.bets-legend dt { display: flex; align-items: center; gap: 8px; }
-.bets-legend dd { margin: 0; font-weight: 700; color: var(--forest); }
+.race-day-icon { display: grid; place-items: center; width: 44px; height: 44px; flex-shrink: 0; color: #36593d; background: #efede5; border-radius: 4px; }
+.race-day-icon svg { width: 25px; height: 25px; }
+.race-day-title > div > div { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+.club-badge { display: inline-flex; align-items: center; width: fit-content; padding: 5px 10px; border-radius: 20px; background: #f0eee5; color: #70541c; font-size: 10px; letter-spacing: .3px; white-space: nowrap; }
+.race-day-title .club-badge { background: var(--forest); color: white; font-weight: 700; font-size: 10px; padding: 4px 8px; }
+.race-day-title h1 { margin: 0; font-size: 21px; font-weight: 500; letter-spacing: -.4px; }
+.race-day-title p { color: #63685b; font-size: 11px; margin: 5px 0 0; }
+.race-day-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; padding: 8px 16px; background: #fcf9f1; border-radius: 9px; margin: 0; width: 500px; flex-shrink: 0; }
+.race-day-metrics > div { padding-right: 18px; }
+.race-day-metrics > div + div { border-left: 1px solid #e9e5db; padding: 0 0 0 23px; }
+.race-day-metrics dt { font-size: 9px; text-transform: uppercase; letter-spacing: .9px; white-space: nowrap; }
+.race-day-metrics dd { margin: 4px 0 0; font: 500 21px/1.2 Georgia, serif; white-space: nowrap; }
+.race-day-metrics .next-race { color: #984217; }
+.next-race dd { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.next-race svg { width: 15px; height: 15px; }
+.dashboard-card { border: 1px solid #f2efe8; border-radius: 13px; background: #fff; box-shadow: 0 3px 4px #34362519, 0 6px 12px #34362503; }
+.balance-card { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 30px; min-height: 170px; padding: 20px 23px; position: relative; overflow: hidden; }
+.balance-summary, .balance-actions { position: relative; z-index: 1; }
+.balance-card .eyebrow { display: flex; align-items: center; gap: 9px; font-size: 10px; letter-spacing: .8px; font-weight: 400; color: #2e3429; margin: 0 0 12px; flex-wrap: wrap; }
+.vault-label { display: inline-flex; align-items: center; gap: 10px; background: #f0ede6; border-radius: 4px; font-size: 10px; letter-spacing: .5px; padding: 3px 9px; }
+.vault-label svg { width: 11px; height: 11px; color: #70816a; }
+.balance-money-row { display: flex; align-items: baseline; gap: 8px; }
+.balance-amount { color: #35543a; font: 600 50px/1 Georgia, serif; letter-spacing: -1.6px; margin: 0 0 10px; overflow-wrap: anywhere; }
+.balance-currencies { display: inline-flex; background: #eeeae3; padding: 3px; border-radius: 8px; font-size: 9px; }
+.balance-currencies > span { padding: 5px 9px; border-radius: 5px; }
+.balance-currencies .currency-active { background: #fffcf5; box-shadow: 0 1px 4px #38351c0d; }
+.card-description { font-size: 12px; color: #63685f; line-height: 1.5; margin: 0; }
+.balance-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.balance-actions button { display: flex; justify-content: center; align-items: center; gap: 10px; width: min(100%, 360px); min-height: 36px; padding: 8px 16px; font-size: 12px; font-weight: 600; border: 0; border-radius: 7px; box-shadow: none; }
+.balance-actions button > svg { justify-self: center; width: 18px; height: 18px; }
+.balance-actions button > span { justify-self: center; white-space: nowrap; }
+.balance-actions .primary-button { background: #36563d; }
+.balance-actions .primary-button:hover { background: #29452f; transform: none; }
+.history-button { color: #1e231b; background: #ece8e0; }
+.history-button:hover { background: #e3dfd4; }
+.balance-watermark { position: absolute; pointer-events: none; color: #f7f7f5; font: 240px/1 Georgia, serif; top: -34px; left: 55%; }
+.dashboard-stats { display: grid; grid-template-columns: minmax(0, .413fr) minmax(0, .587fr); gap: 22px; }
+.bets-card, .races-card { padding: 29px 23px 24px; min-height: 492px; scroll-margin-top: 20px; }
+.card-heading { display: block; position: relative; }
+.card-heading .eyebrow { color: #31372d; font-size: 10px; letter-spacing: .7px; font-weight: 400; margin: 0 0 9px; }
+.card-heading h2 { font-size: 22px; font-weight: 500; line-height: 1.2; letter-spacing: -.4px; margin: 0 0 16px; }
+.card-heading .card-description { font-size: 12px; }
+.card-heading > .club-badge { position: absolute; right: 0; top: 7px; }
+.chart-heading-icon { position: absolute; top: 3px; right: 0; width: 31px; height: 31px; display: grid; place-items: center; color: #6d8065; background: #f0eee6; border-radius: 50%; }
+.chart-heading-icon svg { width: 17px; height: 17px; }
+.bets-chart { margin-top: 25px; }
+.bets-chart svg { display: block; width: 198px; max-width: 100%; margin: 0 auto 17px; }
+.donut-total { font-family: Georgia, serif; font-size: 37px; fill: #15190f; }
+.donut-caption { font-size: 11px; letter-spacing: .2px; fill: #24291f; }
+.bets-legend { display: flex; flex-direction: column; gap: 11px; background: #f7f4eb; margin: 0; padding: 15px; border-radius: 9px; }
+.bets-legend > div { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 13px; }
+.bets-legend dt { display: flex; align-items: center; gap: 9px; }
+.bets-legend dd { font-weight: 700; margin: 0; color: #35583b; }
 .bets-legend > div:nth-child(2) dd { color: var(--orange); }
-.legend-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.legend-dot { display: inline-block; width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
 .won-dot { background: var(--forest); }
 .lost-dot { background: var(--orange); }
-.bets-legend .bets-effectiveness { padding: 9px 8px; background: #fffefc; border-radius: 4px; font-size: 10px; }
-.bets-effectiveness dt { text-transform: uppercase; font-size: 8px; letter-spacing: .5px; }
-.snail-chart { margin: 66px 0 0; }
-.chart-plot { position: relative; height: 208px; margin-left: 20px; }
+.bets-legend .bets-effectiveness { background: #fff; padding: 8px 9px; border-radius: 3px; margin-top: 2px; }
+.bets-effectiveness dt { text-transform: uppercase; font-size: 10px; }
+.snail-chart { margin: 75px 0 0; }
+.chart-plot { position: relative; height: 165px; margin-left: 52px; margin-right: 4px; }
 .chart-grid { position: absolute; inset: 0; }
-.chart-gridline { position: absolute; width: 100%; height: 1px; border-top: 1px dashed #dedfd7; }
-.chart-gridline span { position: absolute; right: calc(100% + 12px); transform: translateY(-50%); font-size: 10px; color: #919888; }
-.chart-columns { height: 100%; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 15px; position: relative; }
+.chart-gridline { position: absolute; width: 100%; height: 1px; border-top: 1px dashed #d6d7ce; }
+.chart-gridline:last-child { border-top-style: solid; }
+.chart-gridline > span { position: absolute; right: calc(100% + 18px); transform: translateY(-50%); color: #93998d; font-size: 10px; }
+.chart-columns { position: relative; height: 100%; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 32px; }
 .chart-column { display: flex; align-items: flex-end; height: 100%; }
-.snail-bar { display: flex; justify-content: center; min-height: 5px; position: relative; width: 100%; background: #4c6e50; border-radius: 7px 7px 2px 2px; }
-.snail-bar span { color: white; font-weight: 700; font-size: 14px; margin-top: 17px; }
-.zero-bar { background: #dfded3; }
-.zero-bar span { color: #7e8575; position: absolute; bottom: 14px; font-size: 11px; }
-.chart-labels { margin: 12px 0 0 20px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 15px; text-align: center; }
-.chart-labels strong { display: block; font-size: 11px; line-height: 1.45; font-weight: 500; overflow-wrap: anywhere; }
-.chart-labels span { display: block; font-size: 9px; color: #7e8475; margin-top: 5px; }
-.chart-footnote { display: flex; justify-content: space-between; gap: 16px; margin: 46px 0 0; font-size: 10px; color: #727a68; }
-.chart-footnote > span { display: flex; align-items: center; gap: 7px; }
-.chart-footnote strong { color: #4b6043; font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: .4px; }
-.dashboard-footer { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding-block: 28px 40px; border-top: 1px solid #e8e5d8; }
-.dashboard-footer strong { font-family: Georgia, serif; font-size: 20px; font-weight: 500; }
-.dashboard-footer p { font-size: 11px; color: #858a7b; margin: 7px 0 0; }
-.dashboard-footer > span { font-size: 10px; color: #7d8571; }
-@media (min-width: 1500px) { .dashboard-content { padding-top: 8px; } }
-@media (max-width: 1000px) {
-  .dashboard-width { width: calc(100% - 40px); }
-  .member-strip > p { font-size: 11px; }
-  .member-strip > p > strong { font-size: 18px; }
-  .member-strip > p > .member-separator, .member-strip > p { gap: 8px; }
-  .race-day-strip { align-items: flex-start; }
-  .race-day-title > div > div { gap: 8px; }
-  .race-day-title h1 { font-size: 21px; }
-  .race-day-metrics { gap: 16px; padding: 13px 16px; }
-  .race-day-metrics > div + div { padding-left: 16px; }
-  .race-day-metrics dd { font-size: 18px; }
-  .balance-card { gap: 30px; }
+.snail-bar { display: flex; justify-content: center; width: 100%; min-height: 6px; position: relative; background: #4e6f52; border-radius: 7px 7px 2px 2px; }
+.snail-bar > span { color: white; margin-top: 19px; font-size: 14px; font-weight: 700; }
+.snail-bar.zero-bar { background: #ddddd3; }
+.zero-bar > span { color: #7b8273; position: absolute; bottom: 15px; font-size: 12px; }
+.winner-star { position: absolute; left: 50%; top: -24px; transform: translateX(-50%); display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; color: #262414; background: #f7c55e; font-size: 15px; }
+.chart-labels { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; text-align: center; margin: 10px -6px 0 42px; }
+.chart-labels strong { display: block; font-size: 12px; line-height: 1.4; font-weight: 500; }
+.chart-labels span { display: block; margin-top: 3px; font-size: 10px; color: #727b6a; }
+.chart-footnote { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 53px 0 0; font-size: 11px; color: #737969; }
+.chart-footnote > span { display: flex; align-items: center; gap: 5px; }
+.chart-footnote .legend-dot { width: 9px; height: 9px; border-radius: 2px; }
+.chart-footnote strong { font-size: 9px; font-weight: 500; color: #335339; letter-spacing: .4px; text-transform: uppercase; }
+.results-card { padding: 30px 23px 22px; min-height: 466px; scroll-margin-top: 20px; }
+.results-heading { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 23px; }
+.results-heading .eyebrow { color: #424a37; font-size: 10px; letter-spacing: .8px; font-weight: 400; margin: 0 0 7px; }
+.results-heading h2 { font-size: 26px; letter-spacing: -.5px; margin: 0; }
+.official-timing { display: flex; align-items: center; gap: 30px; padding: 3px 13px; border-radius: 20px; background: #efede6; color: #424c39; font-size: 10px; letter-spacing: .5px; }
+.official-timing svg { width: 15px; height: 15px; }
+.table-scroll { overflow-x: auto; }
+.race-results-table { width: 100%; border-collapse: separate; border-spacing: 0; text-align: left; white-space: nowrap; font-size: 13px; }
+.race-results-table thead { background: #f7f4eb; }
+.race-results-table thead th { padding: 14px 16px; font-size: 9px; letter-spacing: .7px; text-transform: uppercase; font-weight: 600; }
+.race-results-table thead th:first-child { border-radius: 8px 0 0 8px; }
+.race-results-table thead th:last-child { border-radius: 0 8px 8px 0; }
+.race-results-table tbody th, .race-results-table td { padding: 14px 16px; border-bottom: 1px solid #eeefea; height: 51px; }
+.race-results-table tbody tr:last-child th, .race-results-table tbody tr:last-child td { border-bottom: 0; }
+.race-results-table tbody th { font-weight: 500; color: #38573b; }
+.race-results-table td:nth-child(2) { color: #60665a; }
+.winner-name { display: flex; align-items: center; gap: 5px; }
+.snail-avatar { display: inline-grid; place-items: center; width: 23px; height: 23px; border-radius: 50%; background: #e0e5da; font-size: 15px; }
+.race-dividend { color: #35543a; font-weight: 600; }
+.official-status { background: #c9edcc; color: #264b2c; border-radius: 20px; padding: 3px 9px; font-size: 10px; }
+.dashboard-footer { margin-top: 36px; background: #f7f4eb; }
+.dashboard-footer-inner { min-height: 126px; display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 32px 0; }
+.dashboard-footer strong { font: 600 20px Georgia, serif; letter-spacing: -.5px; }
+.dashboard-footer p { margin: 8px 0 0; font-size: 11px; color: #71776a; }
+.dashboard-footer nav { display: flex; align-items: center; gap: 24px; }
+.dashboard-footer nav button { background: transparent; border: 0; padding: 4px 0; color: #394532; font-size: 10px; letter-spacing: .4px; white-space: nowrap; }
+.dashboard-footer nav button:hover { text-decoration: underline; }
+.dashboard-footer-inner > span { font-size: 10px; color: #3e4737; letter-spacing: .3px; white-space: nowrap; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.transaction-dialog { width: min(900px, calc(100% - 32px)); }
+.transaction-table { border-collapse: collapse; width: 100%; font-size: 12px; text-align: left; }
+.transaction-table th, .transaction-table td { padding: 12px 10px; border-bottom: 1px solid var(--line); }
+.transaction-table td:nth-child(2) { overflow-wrap: anywhere; min-width: 120px; }
+@media (max-width: 1150px) {
+  .dashboard-header-inner { gap: 18px; }
+  .dashboard-nav { gap: 2px; }
+  .dashboard-nav button { padding-inline: 8px; font-size: 12px; }
+  .dashboard-brand strong { font-size: 20px; }
+  .dashboard-brand small { font-size: 9px; }
+  .race-day-metrics { width: 440px; }
+  .race-day-title h1 { font-size: 19px; }
+  .chart-columns { gap: 20px; }
+  .chart-labels strong { font-size: 10px; }
+  .card-heading h2 { font-size: 20px; }
+  .dashboard-footer nav { gap: 14px; }
+}
+@media (max-width: 950px) {
+  .dashboard-header { height: auto; }
+  .dashboard-header-inner { flex-wrap: wrap; padding-block: 18px; }
+  .dashboard-nav { order: 3; justify-content: center; width: 100%; }
+  .dashboard-nav button { font-size: 13px; }
+  .member-strip { flex-wrap: wrap; padding-block: 16px; gap: 14px; }
+  .race-day-strip { flex-direction: column; align-items: stretch; gap: 18px; }
+  .race-day-metrics { width: 100%; }
   .dashboard-stats { grid-template-columns: 1fr; }
-  .bets-chart { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 30px; }
+  .bets-card, .races-card { min-height: 0; }
+  .bets-chart { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 28px; }
   .bets-chart svg { margin-bottom: 0; }
-  .snail-chart { margin-top: 45px; }
-  .chart-footnote { margin-top: 30px; }
+  .snail-chart { margin-top: 66px; }
+  .chart-footnote { margin-top: 35px; }
+  .dashboard-footer-inner { flex-wrap: wrap; }
 }
-@media (max-width: 700px) {
-  .dashboard-header-inner { gap: 15px; min-height: 80px; flex-wrap: wrap; padding-block: 14px; }
-  .dashboard-header .club-logo { width: 185px; }
-  .dashboard-header .club-badge { display: none; }
-  .tribune-tab { padding: 9px 13px; font-size: 12px; }
-  .member-strip { flex-direction: column; align-items: stretch; gap: 18px; padding-block: 20px; }
-  .member-session { gap: 10px; }
-  .logout-button { margin-left: auto; }
-  .member-identity { max-width: 55%; }
-  .race-day-strip { flex-direction: column; gap: 20px; padding: 21px; }
-  .race-day-metrics { width: 100%; justify-content: space-around; }
-  .race-day-metrics > div + div { padding-left: 20px; }
-  .balance-card { grid-template-columns: 1fr; gap: 24px; padding: 25px 23px; }
+@media (max-width: 650px) {
+  .dashboard-width { width: calc(100% - 32px); }
+  .dashboard-brand { gap: 8px; }
+  .dashboard-brand img { width: 200px; }
+  .dashboard-brand strong { font-size: 19px; }
+  .club-purse { gap: 9px; }
+  .club-purse strong { font-size: 12px; }
+  .club-purse > div > span { font-size: 8px; }
+  .purse-avatar { width: 28px; height: 28px; }
+  .dashboard-nav { gap: 3px; justify-content: flex-start; overflow-x: auto; }
+  .dashboard-nav button { padding: 6px 9px; min-height: 32px; font-size: 12px; }
+  .member-strip > p { flex-wrap: wrap; font-size: 11px; gap: 7px; }
+  .member-strip > p strong { font-size: 18px; }
+  .member-session { width: 100%; }
+  .member-identity { max-width: 56%; }
+  .member-identity > span { font-size: 8px; line-height: 1.5; }
+  .logout-button { margin-left: auto; gap: 6px; padding: 5px 8px; font-size: 11px; }
+  .race-day-title { gap: 10px; }
+  .race-day-title h1 { font-size: 19px; line-height: 1.3; }
+  .race-day-title p { font-size: 10px; line-height: 1.5; }
+  .race-day-metrics { padding: 13px 10px; }
+  .race-day-metrics > div { padding-right: 7px; }
+  .race-day-metrics > div + div { padding-left: 9px; }
+  .race-day-metrics dt { font-size: 8px; letter-spacing: .2px; }
+  .race-day-metrics dd { font-size: 16px; }
+  .next-race dd { gap: 4px; }
+  .next-race svg { width: 12px; height: 12px; }
+  .balance-card { grid-template-columns: 1fr; gap: 20px; padding: 24px 20px; }
+  .balance-card .eyebrow { font-size: 9px; }
   .balance-amount { font-size: 45px; }
-  .dashboard-content { gap: 19px; padding-bottom: 36px; }
-  .bets-card, .races-card { padding: 24px 20px; }
+  .balance-actions { align-items: stretch; }
+  .balance-actions button { width: 100%; }
+  .dashboard-content { gap: 18px; }
+  .bets-card, .races-card { padding: 25px 20px; }
+  .card-heading h2 { font-size: 21px; }
+  .card-heading > .club-badge { position: static; margin-top: 15px; }
   .bets-chart { display: block; }
-  .bets-chart svg { width: 200px; margin-bottom: 20px; }
-  .card-heading h2 { font-size: 24px; }
-  .card-heading { flex-wrap: wrap; }
-  .card-heading > .club-badge { margin-top: 0; }
-  .chart-columns, .chart-labels { gap: 6px; }
-  .chart-labels strong { font-size: 9px; }
-  .chart-labels span { font-size: 8px; }
-  .chart-footnote { flex-wrap: wrap; }
-  .dashboard-footer { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .balance-actions > p { font-size: 10px; }
+  .bets-chart svg { margin-bottom: 16px; }
+  .chart-plot { margin-left: 22px; }
+  .chart-columns { gap: 12px; }
+  .chart-labels { margin-left: 14px; gap: 4px; }
+  .chart-labels strong { font-size: 9px; overflow-wrap: anywhere; }
+  .chart-labels span { font-size: 9px; }
+  .chart-footnote { flex-wrap: wrap; gap: 12px; font-size: 10px; }
+  .results-card { padding: 25px 20px; min-height: 0; }
+  .results-heading { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .results-heading h2 { font-size: 24px; }
+  .dashboard-footer { margin-top: 28px; }
+  .dashboard-footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .dashboard-footer nav { flex-wrap: wrap; gap: 20px; }
 }
-@media (max-width: 380px) {
-  .dashboard-width { width: calc(100% - 28px); }
-  .dashboard-header .club-logo { width: 165px; }
-  .logout-button { padding: 8px; font-size: 10px; }
-  .member-avatar { width: 30px; height: 30px; flex-shrink: 0; }
-  .balance-amount { font-size: 38px; }
-}
-
-
-.balance-actions .primary-button:disabled { cursor: not-allowed; }
+@media (prefers-reduced-motion: reduce) { .dashboard-page { scroll-behavior: auto; } }
