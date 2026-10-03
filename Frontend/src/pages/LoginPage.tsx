@@ -11,7 +11,6 @@ export function LoginPage({ successMessage }: { successMessage?: string }) {
   return (
     <AuthLayout>
       <LoginForm
-        showRegistrationLink={false}
         initialEmail={getSavedEmail()}
         onLogin={onLogin}
         successMessage={successMessage}
