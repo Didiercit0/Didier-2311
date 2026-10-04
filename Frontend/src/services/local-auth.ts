@@ -1,3 +1,4 @@
+import type { Payment } from '../domain/payment'
 import type { LocalAccount, LoginInput, RegistrationInput, User } from '../domain/user'
 import { validateAuth } from '../lib/validation'
 
@@ -33,7 +34,7 @@ async function hashPassword(password: string, salt: string): Promise<string> {
 export function getCurrentUser(): User | null {
   const account = readAccount()
   try {
-    return account && (localStorage.getItem(SESSION_KEY) === account.id || sessionStorage.getItem(SESSION_KEY) === account.id) ? publicUser(account) : null
+    return account && localStorage.getItem(SESSION_KEY) === account.id ? publicUser(account) : null
   } catch { return null }
 }
 export function getSavedEmail(): string { return readAccount()?.email ?? '' }
@@ -60,17 +61,54 @@ export async function loginLocal(input: LoginInput): Promise<User> {
     throw new Error('Correo electrónico o contraseña incorrectos. Revisa tus datos e intenta de nuevo.')
   }
   try {
-    localStorage.removeItem(SESSION_KEY)
-    sessionStorage.removeItem(SESSION_KEY)
-    const sessionStore = input.remember ? localStorage : sessionStorage
-    sessionStore.setItem(SESSION_KEY, account.id)
+    localStorage.setItem(SESSION_KEY, account.id)
   } catch { throw new Error('No pudimos guardar tu sesión. Revisa los permisos de almacenamiento del navegador.') }
   notifySession()
   return publicUser(account)
 }
 
 export function logoutLocal(): void {
-  try { localStorage.removeItem(SESSION_KEY); sessionStorage.removeItem(SESSION_KEY) }
+  try { localStorage.removeItem(SESSION_KEY) }
   catch { throw new Error('No se pudo cerrar la sesión. Revisa el almacenamiento del navegador.') }
   notifySession()
+}
+
+export function savePayment(payment: Payment): number {
+  const account = readAccount()
+  const user = getCurrentUser()
+  if (!account || !user || user.id !== payment.payer_id || user.email !== payment.payer_email) {
+    throw new Error('La sesión cambió durante la recarga. Inicia sesión y vuelve a intentarlo.')
+  }
+  const payments = account.payments ?? []
+  if (!Array.isArray(payments)) throw new Error('No se pudo leer el almacenamiento de tu cuenta.')
+  const previous = payments.find(item => item.id === payment.id)
+  if (previous) {
+    if (previous.status !== payment.status || previous.transaction_amount !== payment.transaction_amount) {
+      throw new Error('El identificador de la operación ya existe con un resultado diferente. Tu saldo no se modificó.')
+    }
+    return account.balance
+  }
+  const amountCents = Math.round(payment.transaction_amount * 100)
+  if (!Number.isSafeInteger(amountCents) || amountCents < 1) throw new Error('El monto recibido no es válido.')
+  const balanceCents = Math.round(account.balance * 100) + (payment.status === 'approved' ? amountCents : 0)
+  if (!Number.isSafeInteger(balanceCents)) throw new Error('El saldo excede el límite permitido.')
+  const balance = balanceCents / 100
+  try {
+    localStorage.setItem(ACCOUNT_KEY, JSON.stringify({ ...account, balance, payments: [...payments, payment] }))
+  } catch {
+    throw new Error('No pudimos guardar el resultado de la recarga. El saldo local no se modificó; revisa el almacenamiento del navegador.')
+  }
+  notifySession()
+  return balance
+}
+
+export function getPaymentHistory(): Payment[] {
+  if (!getCurrentUser()) return []
+  const payments = readAccount()?.payments
+  if (!Array.isArray(payments)) return []
+  return payments.filter(payment => payment && typeof payment === 'object'
+    && typeof payment.id === 'string' && typeof payment.reference === 'string'
+    && typeof payment.transaction_amount === 'number' && Number.isFinite(payment.transaction_amount)
+    && typeof payment.date_created === 'string' && Number.isFinite(Date.parse(payment.date_created))
+    && ['approved', 'rejected', 'error'].includes(payment.status))
 }

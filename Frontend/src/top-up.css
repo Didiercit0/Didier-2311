@@ -1,0 +1,89 @@
+/* SnailPay modal */
+
+.information-dialog.top-up-dialog { width: min(720px, calc(100% - 32px)); max-width: 720px; padding: 0; border: 0; border-radius: 16px; background: #fffefc; max-height: calc(100svh - 40px); }
+.information-dialog.top-up-dialog::backdrop { background: #302e2870; backdrop-filter: blur(5px); }
+.top-up-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; background: #f5f2e9; padding: 24px 30px; }
+.snailpay-brand { display: flex; align-items: center; gap: 12px; }
+.snailpay-mark { display: grid; place-items: center; width: 45px; height: 45px; border-radius: 50%; color: #365b3c; background: #d1e9c9; flex-shrink: 0; }
+.snailpay-mark svg { width: 27px; height: 27px; }
+.snailpay-brand-title { display: flex; align-items: center; gap: 8px; }
+.snailpay-brand-title strong { font-family: Georgia, serif; font-size: 27px; line-height: 1.1; letter-spacing: -.6px; }
+.snailpay-brand-title > span { font-size: 9px; font-weight: 700; letter-spacing: .7px; padding: 5px 7px; border-radius: 4px; background: #3c5d40; color: white; }
+.snailpay-brand p { color: #59614e; margin: 5px 0 0; font-size: 12px; letter-spacing: .4px; }
+.top-up-close { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 50%; border: 0; background: #eeebe2; color: #58614e; flex-shrink: 0; }
+.top-up-close:hover:not(:disabled) { background: #e1e4d7; }
+.top-up-body { padding: 25px 30px 30px; }
+.top-up-body h2 { margin: 0 0 6px; font-size: 32px; letter-spacing: -.7px; }
+.top-up-body > p { margin: 0 0 15px; color: #6c7264; font-size: 13px; line-height: 1.5; }
+.payment-states { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3px; padding: 5px; margin: 0 0 12px; background: #eeebe3; list-style: none; border-radius: 9px; }
+.payment-states li { display: flex; align-items: center; justify-content: center; gap: 5px; min-height: 34px; padding: 6px 3px; border-radius: 6px; color: #797e71; font-size: 11px; white-space: nowrap; }
+.payment-states .payment-state-current { color: var(--forest); background: #fffefc; font-weight: 600; box-shadow: 0 1px 3px #35392b08; }
+.payment-state-dot { width: 5px; height: 5px; background: currentColor; border-radius: 50%; flex-shrink: 0; }
+.payment-states .state-error, .payment-states .state-rejected, .payment-states .state-timeout { color: var(--orange); }
+.simulation-notice { display: flex; align-items: flex-start; gap: 9px; padding: 12px 13px; margin-bottom: 24px; border-radius: 8px; background: #f6f3e9; }
+.simulation-notice svg { color: #a28435; width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; }
+.simulation-notice p { color: #6b705f; font-size: 12px; line-height: 1.55; margin: 0; }
+.simulation-notice strong { color: #404b35; }
+.information-dialog.top-up-dialog .top-up-form { gap: 21px; }
+.information-dialog.top-up-dialog .label-line label { font-size: 14px; font-weight: 600; }
+.information-dialog.top-up-dialog .input-wrap input { background: white; border-color: #eae8df; height: 51px; }
+.information-dialog.top-up-dialog .input-wrap input:focus { border-color: #6c8867; }
+.information-dialog.top-up-dialog .field-invalid input { background: #fff4ef; border-color: #edc6b4; }
+.information-dialog.top-up-dialog .input-icon { color: #67735b; top: 16px; }
+.information-dialog.top-up-dialog .password-toggle { top: 3px; }
+.top-up-amount { display: flex; flex-direction: column; gap: 9px; }
+.top-up-amount .form-field { display: contents; }
+.top-up-amount .label-line { order: 1; margin-bottom: 0; }
+.top-up-amount .amount-presets { order: 2; }
+.top-up-amount .input-wrap { order: 3; }
+.top-up-amount .field-description { order: 4; margin-top: 0; }
+.top-up-amount input { font-weight: 700; }
+.amount-presets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.amount-presets button { padding: 9px 6px; border: 1px solid transparent; border-radius: 8px; background: #f1eee6; color: #535a4d; font-size: 12px; font-weight: 600; }
+.amount-presets button:hover:not(:disabled) { background: #e9eddf; }
+.amount-presets button[aria-pressed='true'] { background: #f8eee7; color: var(--orange); border-color: #ecc8b2; }
+.information-dialog.top-up-dialog .payment-example { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 15px; margin: -3px 0 0; padding: 11px 13px; border-radius: 8px; font-size: 10px; line-height: 1.6; color: #69765c; background: #f8f7f1; }
+.information-dialog.top-up-dialog .payment-example span { min-width: 0; }
+.information-dialog.top-up-dialog .payment-example button { margin: 0; font-size: 10px; white-space: nowrap; }
+.top-up-actions { display: flex; align-items: center; justify-content: flex-end; gap: 22px; margin-top: 3px; }
+.top-up-actions .primary-button { min-height: 49px; padding-inline: 22px; font-size: 13px; }
+.top-up-cancel { border: 0; background: transparent; color: var(--forest); padding: 12px 0; font-size: 13px; font-weight: 600; }
+.top-up-cancel:hover:not(:disabled) { text-decoration: underline; text-underline-offset: 4px; }
+.top-up-footer { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 15px 30px; background: #f1eee6; font-size: 11px; color: #6c7362; }
+.top-up-footer > span:first-child { display: flex; align-items: center; gap: 7px; }
+.top-up-footer svg { width: 15px; height: 15px; color: var(--forest); }
+.payment-loading { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 13px; border-radius: 8px; background: #eef3e7; color: #45613a; font-size: 12px; line-height: 1.5; }
+.payment-loading .button-spinner { border-color: #c4cfb6; border-top-color: var(--forest); flex-shrink: 0; }
+@media (max-width: 600px) {
+  .information-dialog.top-up-dialog { width: calc(100% - 24px); max-height: calc(100svh - 24px); }
+  .top-up-header { padding: 20px; gap: 12px; }
+  .snailpay-mark { width: 39px; height: 39px; }
+  .snailpay-brand { gap: 9px; }
+  .snailpay-brand-title strong { font-size: 24px; }
+  .snailpay-brand-title > span { font-size: 8px; padding: 4px 5px; }
+  .snailpay-brand p { font-size: 10px; }
+  .top-up-body { padding: 23px 20px; }
+  .top-up-body h2 { font-size: 28px; }
+  .top-up-body > p { font-size: 12px; }
+  .payment-states { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .payment-states li { min-height: 30px; font-size: 10px; }
+  .simulation-notice p { font-size: 11px; }
+  .information-dialog.top-up-dialog .payment-example { flex-direction: column; align-items: flex-start; }
+  .top-up-actions { align-items: stretch; flex-direction: column-reverse; gap: 5px; }
+  .top-up-actions .primary-button { width: 100%; }
+  .top-up-footer { flex-wrap: wrap; justify-content: center; padding: 13px 20px; font-size: 10px; gap: 7px 15px; }
+}
+
+.payment-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 380px) { .payment-field-row { grid-template-columns: 1fr; } }
+@media (max-width: 380px) {
+  .top-up-header { padding: 17px; gap: 8px; }
+  .snailpay-mark { width: 34px; height: 34px; }
+  .snailpay-brand { gap: 7px; }
+  .snailpay-brand-title { gap: 5px; }
+  .snailpay-brand-title strong { font-size: 22px; }
+  .snailpay-brand p { font-size: 9px; }
+  .top-up-close { width: 32px; height: 32px; }
+}
+
+
