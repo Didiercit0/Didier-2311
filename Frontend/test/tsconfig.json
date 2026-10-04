@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.app.json",
+  "compilerOptions": {
+    "types": [
+      "vite/client",
+      "node",
+      "@testing-library/jest-dom"
+    ],
+    "noEmit": true
+  },
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
+    "../vitest.config.ts"
+  ]
+}
