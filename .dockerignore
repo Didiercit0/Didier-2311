@@ -1,0 +1,16 @@
+.git
+**/node_modules
+**/dist
+**/.test-dist
+**/coverage
+**/.vitest
+**/test
+**/tests
+**/.env
+**/.env.*
+**/*.log
+**/*.tsbuildinfo
+**/*.md
+README
+.vscode
+.idea

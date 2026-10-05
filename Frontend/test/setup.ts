@@ -4,7 +4,6 @@ import { TextEncoder } from 'node:util'
 import { cleanup } from '@testing-library/react'
 import { afterEach, beforeEach, vi } from 'vitest'
 
-// Se usa criptografía real de Node; jsdom aporta el DOM y LocalStorage.
 vi.stubGlobal('crypto', webcrypto)
 vi.stubGlobal('TextEncoder', TextEncoder)
 
@@ -16,4 +15,14 @@ beforeEach(() => {
 
 afterEach(() => {
   cleanup()
+})
+
+
+Object.defineProperty(HTMLDialogElement.prototype, 'showModal', {
+  configurable: true,
+  value: function (this: HTMLDialogElement) { this.setAttribute('open', '') },
+})
+Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', {
+  configurable: true,
+  value: () => {},
 })

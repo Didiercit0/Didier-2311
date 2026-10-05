@@ -1,4 +1,4 @@
-export const SNAILS = ['Rayo Lento', 'Doña Babosa', 'Turbo Concha', 'Capitán Baba', 'Relámpago', 'Sir Espiral'] as const
+export const SNAILS = ['Rayo Lento', 'Doña Babosa', 'Pasito', 'Capitán Baba', 'Relámpago', 'Sir Espiral'] as const
 export type SnailName = typeof SNAILS[number]
 
 export interface RaceResult {
@@ -14,7 +14,7 @@ export interface RaceResult {
 export const RACE_RESULTS: readonly RaceResult[] = [
   { id: 1, name: 'Copa Rocío Matinal', distance: '1.20 metros', winner: 'Rayo Lento', time: '14 min 32 seg', dividend: '$3.40 sFL' },
   { id: 2, name: 'Trofeo Lechuga Romana', distance: '1.00 metro', winner: 'Doña Babosa', time: '16 min 05 seg', dividend: '$4.80 sFL' },
-  { id: 3, name: 'Clásico Musgo Dorado', distance: '1.50 metros', winner: 'Turbo Concha', time: '18 min 48 seg', dividend: '$2.10 sFL' },
+  { id: 3, name: 'Clásico Musgo Dorado', distance: '1.50 metros', winner: 'Pasito', time: '18 min 48 seg', dividend: '$2.10 sFL' },
   { id: 4, name: 'Sprint de la Pérgola', distance: '0.80 metros', winner: 'Relámpago', winnerLabel: 'Relámpago Gris', time: '11 min 19 seg', dividend: '$5.25 sFL' },
   { id: 5, name: 'Corona de Tréboles', distance: '1.20 metros', winner: 'Sir Espiral', time: '15 min 42 seg', dividend: '$3.90 sFL' },
   { id: 6, name: 'Gran Premio de la Tarde', distance: '1.40 metros', winner: 'Rayo Lento', time: '13 min 58 seg', dividend: '$2.85 sFL' },

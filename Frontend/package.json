@@ -8,8 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest run",
-    "test:watch": "vitest",
+    "test": "npm --prefix ../snailpay run build && vitest run",
+    "test:watch": "npm --prefix ../snailpay run build && vitest",
     "test:types": "tsc -p test/tsconfig.json"
   },
   "dependencies": {
